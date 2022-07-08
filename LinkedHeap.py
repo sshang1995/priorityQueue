@@ -32,10 +32,14 @@ class LinkedHeap:
                 self._upheap(node_to_insert)
 
     def delete(self):
+        if self.count == 0:
+            return
         self.count -= 1
         deleted_root = self.root
         # get last node
         last_node = self._get_last_node()
+        if not last_node:
+            return
 
         # swap root and last node
         copy_last_node = copy(last_node)
@@ -46,13 +50,15 @@ class LinkedHeap:
             deleted_root.get_left().set_parent(last_node)
 
             last_node.set_right(deleted_root.get_right())
-            deleted_root.get_right().set_parent(last_node)
+            if deleted_root.get_right():
+                deleted_root.get_right().set_parent(last_node)
         elif copy_root.get_right() and copy_root.get_right().get_element() == copy_last_node.get_element():
             last_node.set_right(copy_root)
             deleted_root.get_right().set_parent(last_node)
 
             last_node.set_left(deleted_root.get_left())
-            deleted_root.get_left().set_parent(last_node)
+            if deleted_root.get_left():
+                deleted_root.get_left().set_parent(last_node)
         else:
             if copy_root.get_left():
                 last_node.set_left(deleted_root.get_left())
@@ -65,7 +71,7 @@ class LinkedHeap:
         self.root = last_node
 
         # set old root node to last position
-        if copy_last_node.get_parent().get_element() == copy_root.get_element():
+        if copy_last_node.get_parent() and copy_last_node.get_parent().get_element() == copy_root.get_element():
             copy_root.set_parent(self.root)
         else:
             copy_root.set_parent(copy_last_node.get_parent())
@@ -86,10 +92,10 @@ class LinkedHeap:
 
         # delete last node
         curr_last_node = self._get_last_node()
-        if curr_last_node.get_parent().get_left() and \
+        if curr_last_node.get_parent() and curr_last_node.get_parent().get_left() and \
             curr_last_node.get_parent().get_left().get_element() == curr_last_node.get_element():
             curr_last_node.get_parent().set_left(None)
-        else:
+        elif curr_last_node.get_parent():
             curr_last_node.get_parent().set_right(None)
 
         curr_last_node.set_parent(None)
@@ -111,7 +117,7 @@ class LinkedHeap:
         parent = current_node.get_parent()
         # while the current node is not root and,
         # parent of the current node has a bigger value than the current node
-        if parent is not None and current_node.get_element()[0] < parent.get_element()[0]:
+        if parent and current_node.get_element()[0] < parent.get_element()[0]:
             # swap parent and current_node, return parent position which is a new position
             old_parent = self._swap(parent, current_node)
             if old_parent.get_parent().get_parent() is None:
