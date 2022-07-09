@@ -25,7 +25,7 @@ class BinaryNode:
         """Returns list of strings, width, height, and horizontal coordinate of the root."""
         # No child.
         if self._right is None and self._left is None:
-            line = '%s' % self._element[1]
+            line = '%s' % self._element[0]
             width = len(line)
             height = 1
             middle = width // 2
@@ -34,7 +34,7 @@ class BinaryNode:
         # Only left child.
         if self._right is None:
             lines, n, p, x = self._left.display_aux()
-            s = '%s' % self._element[1]
+            s = '%s' % self._element[0]
             u = len(s)
             first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s
             second_line = x * ' ' + '/' + (n - x - 1 + u) * ' '
@@ -44,7 +44,7 @@ class BinaryNode:
         # Only right child.
         if self._left is None:
             lines, n, p, x = self._right.display_aux()
-            s = '%s' % self._element[1]
+            s = '%s' % self._element[0]
             u = len(s)
             first_line = s + x * '_' + (n - x) * ' '
             second_line = (u + x) * ' ' + '\\' + (n - x - 1) * ' '
@@ -54,7 +54,7 @@ class BinaryNode:
         # Two children.
         left, n, p, x = self._left.display_aux()
         right, m, q, y = self._right.display_aux()
-        s = '%s' % self._element[1]
+        s = '%s' % self._element[0]
         u = len(s)
         first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s + y * '_' + (m - y) * ' '
         second_line = x * ' ' + '/' + (n - x - 1 + u + y) * ' ' + '\\' + (m - y - 1) * ' '

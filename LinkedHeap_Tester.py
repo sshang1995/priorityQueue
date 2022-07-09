@@ -93,6 +93,8 @@ lh.insert(-15, "¡Top!")
 
 print("peek:   (-15, '¡Top!')\t= " + str(lh.peek()))
 
+lh._print_heap()
+
 if pause:
     input()
 else:
@@ -106,20 +108,25 @@ print("------------------------------------------------------------")
 print("delete: (-15, '¡Top!')\t\t= " + str(lh.delete()))
 print()
 
+
 print("peek:   (-10, 'Baklava')\t\t= " + str(lh.peek()))
 print("delete: (-10, 'Baklava')\t\t= " + str(lh.delete()))
 print()
+
 
 print("peek:   (-5, 'Weird, right?')\t= " + str(lh.peek()))
 print("delete: (-5, 'Weird, right?')\t= " + str(lh.delete()))
 print()
 
+
 print("peek:   (0, 'Should be first')\t= " + str(lh.peek()))
 print("delete: (0, 'Should be first')\t= " + str(lh.delete()))
 print()
 
+
 print("peek:   (0, 'Should be second')\t= " + str(lh.peek()))
 print("delete: (0, 'Should be second')\t= " + str(lh.delete()))
+
 
 if pause:
     input()
@@ -130,24 +137,30 @@ print("peek:   (1, ['A', 'list', 'of', 'stuff'])\n\t  = " + str(lh.peek()))
 print("delete: (1, ['A', 'list', 'of', 'stuff'])\n\t  = " + str(lh.delete()))
 print()
 
+
 print("peek:   (2, 1)\t\t\t= " + str(lh.peek()))
 print("delete: (2, 1)\t\t\t= " + str(lh.delete()))
 print()
+
 
 print("peek:   (5, 10)\t\t\t= " + str(lh.peek()))
 print("delete: (5, 10)\t\t\t= " + str(lh.delete()))
 print()
 
+
 print("peek:   (23, 'My Password is Taco')\t= " + str(lh.peek()))
 print("delete: (23, 'My Password is Taco')\t= " + str(lh.delete()))
 print()
+
 
 print("peek:   (47, 555.55)\t\t= " + str(lh.peek()))
 print("delete: (47, 555.55)\t\t= " + str(lh.delete()))
 print()
 
+
 print("peek:   (123, 'Last')\t\t= " + str(lh.peek()))
 print("delete: (123, 'Last')\t\t= " + str(lh.delete()))
+
 
 if pause:
     input()
@@ -171,9 +184,12 @@ lh.insert(47, 555.55)
 lh.insert(1.0000007, ["A", "list", "of", "stuff"])
 lh.insert(-14.55, "¡Top!")
 
+lh._print_heap()
+
 print("peek:   (-14.55, '¡Top!')\t= " + str(lh.peek()))
 print()
-
+import pdb;
+pdb.set_trace()
 print("delete: (-14.55, '¡Top!')\t\t  = " + str(lh.delete()))
 print("delete: (-10.4, 'Baklava')\t\t  = " + str(lh.delete()))
 print("delete: (-4.9, 'Weird, right?')\t  = " + str(lh.delete()))
@@ -181,7 +197,9 @@ print("delete: (0.6, 'Should be first')\t  = " + str(lh.delete()))
 print("delete: (0.6, 'Should be second')\t  = " + str(lh.delete()))
 print("delete: (1.0000007, ['A', 'list', 'of', 'stuff'])\n\t  = " + str(lh.delete()))
 print("delete: (2.15, 1)\t\t\t  = " + str(lh.delete()))
+lh._print_heap()
 print("delete: (5, 10)\t\t\t  = " + str(lh.delete()))
+lh._print_heap()
 print("delete: (23.5, 'My Password is Taco') = " + str(lh.delete()))
 print("delete: (47, 555.55)\t\t  = " + str(lh.delete()))
 print("delete: (123.467, 'Last')\t\t  = " + str(lh.delete()))

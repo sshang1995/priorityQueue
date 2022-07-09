@@ -34,12 +34,20 @@ class LinkedHeap:
     def delete(self):
         if self.count == 0:
             return
-        self.count -= 1
+
+        # import pdb;
+        # pdb.set_trace()
         deleted_root = self.root
         # get last node
         last_node = self._get_last_node()
         if not last_node:
             return
+
+        # if last_node is root node, set root as None
+        if last_node.get_element() == self.root.get_element():
+            self.root = None
+            self.count = 0
+            return deleted_root.get_element()
 
         # swap root and last node
         copy_last_node = copy(last_node)
@@ -94,12 +102,16 @@ class LinkedHeap:
         curr_last_node = self._get_last_node()
         if curr_last_node.get_parent() and curr_last_node.get_parent().get_left() and \
             curr_last_node.get_parent().get_left().get_element() == curr_last_node.get_element():
+
             curr_last_node.get_parent().set_left(None)
-        elif curr_last_node.get_parent():
+
+        elif curr_last_node.get_parent() and curr_last_node.get_parent().get_right() and \
+                curr_last_node.get_parent().get_right().get_element() == curr_last_node.get_element():
             curr_last_node.get_parent().set_right(None)
 
         curr_last_node.set_parent(None)
 
+        self.count -= 1
         # bubble down current root node
         self._downheap(self.root)
 
@@ -108,7 +120,7 @@ class LinkedHeap:
     def peek(self):
         return self.root.get_element()
 
-    # help method
+    # ----------------help method--------------------
     '''
         move node with smaller key up, move parent down the tree
     '''

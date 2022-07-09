@@ -12,7 +12,7 @@ class PriorityQueue:
         return self.linked_heap.delete()
 
     def min(self):
-        return print(self.linked_heap.peek())
+        return self.linked_heap.peek()
 
     def is_empty(self):
         return self.linked_heap.count == 0
@@ -25,25 +25,25 @@ if __name__ == '__main__':
     pq = PriorityQueue()
 
     pq.add(11)
-    pq.min()
+    print(pq.min())
 
     pq.add(7)
-    pq.min()
+    print(pq.min())
 
     pq.add(8)
-    pq.min()
+    print(pq.min())
 
     pq.add(6)
-    pq.min()
+    print(pq.min())
 
     pq.add(5)
-    pq.min()
+    print(pq.min())
 
     pq.add(9)
-    pq.min()
+    print(pq.min())
 
     pq.add(4)
-    pq.min()
+    print(pq.min())
 
     min_pair = pq.remove()
     print("delete first")
