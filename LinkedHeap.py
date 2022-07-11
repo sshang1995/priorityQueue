@@ -10,8 +10,6 @@ class LinkedHeap:
 
     def insert(self, key, value=None):
         self.count += 1
-        # if not value:
-        #     value = str(key)
         node_to_insert = BinaryNode([key, value])
         insertion_parent = self._get_latest_insert_position()
         if not insertion_parent:
@@ -35,8 +33,6 @@ class LinkedHeap:
         if self.count == 0:
             return
 
-        # import pdb;
-        # pdb.set_trace()
         deleted_root = self.root
         # get last node
         last_node = self._get_last_node()
@@ -55,14 +51,16 @@ class LinkedHeap:
         # set last node to root position
         if copy_root.get_left() and copy_root.get_left().get_element() == copy_last_node.get_element():
             last_node.set_left(copy_root)
-            deleted_root.get_left().set_parent(last_node)
+            copy_root.set_parent(last_node)
+            #deleted_root.get_left().set_parent(last_node)
 
             last_node.set_right(deleted_root.get_right())
             if deleted_root.get_right():
                 deleted_root.get_right().set_parent(last_node)
         elif copy_root.get_right() and copy_root.get_right().get_element() == copy_last_node.get_element():
             last_node.set_right(copy_root)
-            deleted_root.get_right().set_parent(last_node)
+            copy_root.set_parent(last_node)
+            #deleted_root.get_right().set_parent(last_node)
 
             last_node.set_left(deleted_root.get_left())
             if deleted_root.get_left():
@@ -277,56 +275,40 @@ if __name__ == '__main__':
 
     print("Inserting 7")
     lp.insert(7)
-    #lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
     #lp._print_heap()
 
     print("Inserting 8")
     lp.insert(8)
-    #lp._print_heap()
-    #lp.delete()
-    #lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
     #lp._print_heap()
 
     print("Inserting 6")
     lp.insert(6)
-    # lp._print_heap()
-    # lp.delete()
-    # lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
     #lp._print_heap()
 
     print("Inserting 5")
     lp.insert(5)
-    # lp._print_heap()
-    # lp.delete()
-    # lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
-    #lp._print_heap()
 
     print("Inserting 9")
     lp.insert(9)
-    # lp._print_heap()
-    # lp.delete()
-    # lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
-    #lp._print_heap()
 
     print("Inserting 4")
     lp.insert(4)
     lp._print_heap()
     deleted_node = lp.delete()
-    print(deleted_node)
+    print(f"deleted_node: {deleted_node}")
     lp._print_heap()
     print(f"current root: {lp.peek()}")
     print(f'get last node: {lp._get_last_node()}')
-    #lp._print_heap()
 
 
     # import pdb; pdb.set_trace()
